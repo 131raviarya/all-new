@@ -111,7 +111,7 @@ Thread(target=scheduler, args=()).start()
 
 TOKEN = '5186507750:AAH4_xds21DEcDkui3OR5QZ75JyQZntuqZ4'
 TOKEN2 = '5577708184:AAHR7BlxQtbBz5848_ejzJ7-MCz8Vd72-yc'
-#TOKEN = TOKEN2
+TOKEN = TOKEN2
 # TOKEN2 = '2025314077:AAHaS5N98O5mWiKztJena2j62f7R2p8YLAk'
 bot = telebot.TeleBot(TOKEN)
 bot2 = telebot.TeleBot(TOKEN2)

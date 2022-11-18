@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+        .gth{
+            position:absolute;
+            top:1050px;
+            color:white;
+        }
+        .abx{
+            display: flex;
+            flex-direction:column;
+            justify-content: space-between;
+            position:absolute;
+            left:776px;
+            top:837px;
+            }
+        .emoji2{
+            height:22.5px; margin-bottom:8.5px;
+        }
+        .emoji{
+            height:20px; margin-bottom:-5px;
+        }
+        .names{
+            font-weight: 600;
+            font-size: 20px;
+        }
+        body{
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color:#dbd2cd;
+        }
+        .tab{
+            height : auto; width: auto; margin:0 30px 0 30px
+        }
+        table{
+            width:300px;
+            border-color: rgba(225,255,225,0.1);
+            border-width: 1px;
+            border-style: solid;
+            padding: 5px;
+        }
+        .ravi{
+
+        }
+
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class='ravi' style = 'display: flex; flex-wrap: wrap; justify-content: center; background-color:#2D3047; padding:43px; border-style:solid;border-width:7px; border-color:white;'>
+        <div class="abx">
+            <img class="emoji2" src="#em1">
+            <img class="emoji2" src="#em2">
+            <img class="emoji2" src="#em3">
+            <img class="emoji2" src="#em4">
+            <img class="emoji2" src="#em5">
+ 
+        </div>
+        <div style = 'width: 100%; text-align: center; margin:auto'>
+            <h1 style="color:white; margin:10px 20px 10px 20px;">
+                #meName & #otherName
+            </h1>
+            <p style="color:white; margin:0px 20px 20px 20px;">
+                #strEndDate
+            </p>
+        </div>
+        <div class='tab'>
+            <p class="names" style="color:rgba(215,85,87,0.9)">#meName</p>
+            <table>
+                <tr><td>Total Messages</td><td style="text-align:right">#aa1</td></tr>
+                <tr><td>Total Words</td><td style="text-align:right">#aa2</td></tr>
+                <tr><td>Total Emojies</td><td style="text-align:right">#aa3</td></tr>
+                <tr><td>Most sent Word</td><td style="text-align:right">#aa4</td></tr>
+                <tr><td>Most used Emoji</td><td style="text-align:right">#aa5</td></tr>   
+            </table>
+        </div>
+        <div class='tab'>
+            <p class="names" style="color:rgba(242,142,44,255)">#otherName</p>
+            <table>
+                <tr><td>Total Messages</td><td style="text-align:right">#bb1</td></tr>
+                <tr><td>Total Words</td><td style="text-align:right">#bb2</td></tr>
+                <tr><td>Total Emojies</td><td style="text-align:right">#bb3</td></tr>
+                <tr><td>Most sent Word</td><td style="text-align:right">#bb4</td></tr>
+                <tr><td>Most used Emoji</td><td style="text-align:right">#bb5</td></tr>   
+            </table>
+        </div>
+        <div class ='tab'>
+            <p class="names" style="color:#ae942f">TOTAL</p>
+            <table>
+                <tr><td>Total Messages</td><td style="text-align:right">#cc1</td></tr>
+                <tr><td>Total Words</td><td style="text-align:right">#cc2</td></tr>
+                <tr><td>Total Emojies</td><td style="text-align:right">#cc3</td></tr>
+                <tr><td>Most sent Word</td><td style="text-align:right">#cc4</td></tr>
+                <tr><td>Most used Emoji</td><td style="text-align:right">#cc5</td></tr>   
+            </table>
+        </div>
+        <div style = 'height : 100px; width: 220px; margin:50px 0 0 0px'>
+            <canvas id="myChart" width="220px" height="100px"></canvas>
+        </div>
+        <div style = 'height : 100px; width: 750px; margin:50px 0 0 50px'>
+            <canvas id="myChart2" width="750px" height="100px"></canvas>
+        </div>
+        <div style = 'height : 200px; width: 600px; margin-top:50px'>
+            <canvas id="myChart3" width="600px" height="200px"></canvas>
+        </div>
+        <div style = 'height : 200px; width: 400px; margin:50px 0 0 50px'>
+            <canvas id="myChart4" width="400px" height="200px"></canvas>
+        </div>
+        <div style = 'height : 100px; width: 250px; margin:50px 0 0 0px'>
+            <canvas id="myChart5" width="250px" height="100px"></canvas>
+        </div>
+        <div style = 'height : 250px; width: 350px; margin:50px 0 0 50px'>
+            <canvas id="myChart6" width="400px" height="250px"></canvas>
+        </div>
+        <div style = 'height : 250px; width: 350px; margin:50px 0 0 70px'>
+            <canvas id="myChart7" width="400px" height="250px"></canvas>
+        </div>
+
+    </div>
+    <p class="gth" style="left:30px;">© Ravi Arya</p>
+    <p class="gth" style="right:30px;">WhatsApp Chat Analysis</p>
+    
+    
+    <script>
+    var myColor = 'rgba(215,85,87,255)';
+    var otherColor = 'rgba(242,142,44,255)';
+    var axisColor = {
+    
+        x: {  // <-- axis is not array anymore, unlike before in v2.x: '[{'
+            grid: {
+            color: 'rgba(255,0,0,0)',
+            borderColor: 'rgba(225,255,225,0.4)'  // <-- this line is answer to initial question
+            },
+            ticks : {
+            autoSkip: true,
+            maxRotation: 0,
+            minRotation: 0
+            }
+        },
+        y: {  // <-- axis is not array anymore, unlike before in v2.x: '[{'
+            grid: {
+            color: 'rgba(225,255,225,0.03)',
+            borderColor: 'rgba(225,255,225,0.2)'  // <-- this line is answer to initial question
+            }
+        }
+        };
+
+        
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['#meName', '#otherName'],
+            datasets: [{
+                data: [#meTextAvg, #otherTextAvg],
+                backgroundColor: [
+                    '#de575d',
+                    '#f38e2c',
+                ],
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                  
+                  grid: {
+                    color: 'rgba(225,255,225,0.03)',
+                    borderColor: 'rgba(225,255,225,0.2)'  // <-- this line is answer to initial question
+                    }
+                },
+                y: {grid: {
+                    color: 'rgba(255,0,0,0)',
+                    borderColor: 'rgba(225,255,225,0.4)'  // <-- this line is answer to initial question
+                    },
+                    ticks : {
+                    autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0
+                    },
+                  
+                }
+              },
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+              bar: {
+                borderWidth: 0,
+                borderColor: 'white',
+              }
+            },
+            responsive: true,
+            plugins: {
+              legend: {
+                display:false,
+              },
+              title: {
+                display: true,
+                text: 'Number of Words per text',
+              }
+            }
+          },
+    });
+
+    
+
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: #dayName1,
+            datasets: [{
+                data: #barHeight1,
+                backgroundColor: '#ae942f',
+            }]
+        },
+        options: {
+            scales: axisColor,
+            responsive: true,
+            plugins: {
+            legend: {
+                display:false,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Total Messages Over Time'
+            }
+            }
+        },
+    });
+
+
+    const ctx3 = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: #dayName1,
+            datasets: [{
+                data: #lineHeight1,
+                backgroundColor: #color1,
+                borderWidth:0,
+                //borderColor: '#de575d',
+                fill:true,
+            },
+            {
+                data: #lineHeight2,
+                backgroundColor: #color2,
+                borderWidth:0,
+                // borderColor: 'white',
+                fill:true,
+            }
+            ]
+        },
+        options: {
+            scales: axisColor,
+            radius:0,
+            responsive: true,
+            plugins: {
+            legend: {
+                display:false,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'User Messages Over Time'
+            }
+            }
+        },
+    });
+
+
+    const ctx4 = document.getElementById('myChart4').getContext('2d');
+    const myChart4 = new Chart(ctx4, {
+        type: 'line',
+        data: {
+            labels: ['', '', '12 AM', '', '', '', '', '', '6 AM', '', '', '', '', '', '12 PM', '', '', '', '', '', '6 PM', '', '', '', '', '11 PM', '', ''],
+            datasets: [{
+                data: #myDailyTime,
+                backgroundColor: 'rgba(215,85,87,255)',
+                borderColor: myColor,
+                borderWidth: 2,
+                //fill:true,
+            },
+            {
+                data: #otherDailyTime,
+                backgroundColor: 'rgba(242,142,44,255)',
+                borderColor: otherColor,
+                borderWidth: 2,
+                //fill:true,
+            }
+            ]
+        },
+        options: {
+            scales: {
+                x: {  // <-- axis is not array anymore, unlike before in v2.x: '[{'
+          grid: {
+            color: 'rgba(255,0,0,0)',
+            borderColor: 'rgba(225,255,225,0.4)'  // <-- this line is answer to initial question
+          },
+          ticks : {
+            autoSkip: false,
+            maxRotation: 0,
+            minRotation: 0
+          }
+        },
+        y: {  // <-- axis is not array anymore, unlike before in v2.x: '[{'
+        suggestedMin: -1,
+          grid: {
+            color: 'rgba(225,255,225,0.03)',
+            borderColor: 'rgba(225,255,225,0.2)'  // <-- this line is answer to initial question
+          },
+
+
+        }
+            },
+            
+            radius:2,
+            responsive: true,
+            plugins: {
+            legend: {
+                display:false,
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Messages Over Time'
+            }
+            }
+        },
+    });
+
+    const ctx5 = document.getElementById('myChart5').getContext('2d');
+    const myChart5 = new Chart(ctx5, {
+        type: 'doughnut',
+        data: {
+            labels: ['#meName', '#otherName'],
+            datasets: [
+            {   
+                borderWidth:0,
+                data: [#aa1,#bb1],
+                borderJoinStyle:'round',
+                backgroundColor: [
+                    myColor,
+                    otherColor,
+                ],
+                //backgroundColor: Object.values(Utils.CHART_COLORS),
+            }
+            ]
+        },
+        options: {
+            
+            cutout: 55,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                display: true,
+                text: 'Messages Distribution'
+                }
+            }
+        },
+        
+    });
+
+    const ctx6 = document.getElementById('myChart6').getContext('2d');
+    const myChart6 = new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: #topWords,
+            datasets: [{
+                data: #myTopWords,
+                backgroundColor: myColor,
+            },
+            {
+                data: #otherTopWords,
+                backgroundColor: otherColor,
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+              bar: {
+                borderWidth: 0,
+                borderColor: 'white',
+              }
+            },
+            scales: {
+                x: {
+                  stacked: true,
+                  grid: {
+                    color: 'rgba(225,255,225,0.03)',
+                    borderColor: 'rgba(225,255,225,0.2)'  // <-- this line is answer to initial question
+                    }
+                },
+                y: {grid: {
+                    color: 'rgba(255,0,0,0)',
+                    borderColor: 'rgba(225,255,225,0.4)'  // <-- this line is answer to initial question
+                    },
+                    ticks : {
+                    autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0
+                    },
+                  stacked: true
+                }
+              },
+            responsive: true,
+            plugins: {
+              legend: {
+                display:false,
+              },
+              title: {
+                display: true,
+                text: 'Most Used Words',
+                
+              }
+            }
+          },
+    });
+
+    const ctx7 = document.getElementById('myChart7').getContext('2d');
+    const myChart7 = new Chart(ctx7, {
+        type: 'bar',
+        data: {
+            labels: #topEmojis,
+            datasets: [{
+                data: #myTopEmojis,
+                backgroundColor: myColor,
+            },
+            {
+                data: #otherTopEmojis,
+                backgroundColor: otherColor,
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+              bar: {
+                borderWidth: 0,
+                borderColor: 'white',
+              }
+            },
+            scales: {
+                x: {
+                  stacked: true,
+                  grid: {
+                    color: 'rgba(225,255,225,0.03)',
+                    borderColor: 'rgba(225,255,225,0.2)'  // <-- this line is answer to initial question
+                    }
+                },
+                y: {grid: {
+                    color: 'rgba(255,0,0,0)',
+                    borderColor: 'rgba(225,255,225,0.4)'  // <-- this line is answer to initial question
+                    },
+                    ticks : {
+                    display:false,
+                    autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0
+                    },
+                  stacked: true
+                }
+              },
+            responsive: true,
+            plugins: {
+              legend: {
+                display:false,
+              },
+              title: {
+                display: true,
+                text: 'Most Used Emojis',
+                
+              }
+            }
+          },
+    });
+
+
+    </script>
+
+
+
+</body>
+</html>
