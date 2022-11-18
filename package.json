@@ -1,0 +1,20 @@
+{
+ "name": "all-new",
+ "version": "1.0.0",
+ "description": "",
+ "scripts": {
+       "build": "echo \"No build specified\" && exit 1",
+        "test": "echo \"No test specified\" && exit 1",
+        "start": "python main.pys"
+   },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/131raviarya/all-new.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+        "url": "https://github.com/131raviarya/all-new/issues"
+    },
+   "homepage": "https://github.com/131raviarya/all-new#readme"
+}
