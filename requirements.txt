@@ -1,1 +1,13 @@
-﻿pyTelegramBotAPI==4.4.0
+tqdm
+PyPDF2==1.26.0
+certifi==2021.10.8
+emoji==0.6.0
+pyTelegramBotAPI==4.4.0
+requests==2.27.1
+selenium==4.1.0
+pip==19.0.3
+pdfcrowd
+pikepdf
+mysql-connector-python == 8.0.26
+pillow
+pytesseract
